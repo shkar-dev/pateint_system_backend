@@ -1,5 +1,7 @@
 <?php
 
+
+
 include_once "Connection.php";
 $request_body =file_get_contents('php://input');
 $patient =  json_decode($request_body,true);
@@ -18,13 +20,11 @@ $stmt->bindParam(':occupation',$patient['Occupation']);
 $stmt->bindParam(':gender',$patient['Gender']);
 $stmt->bindParam(':status',$patient['Status']);
 $stmt->bindParam(':bg',$patient['BloodGroup']);
-if($stmt->execute()){
-    echo "true";
-}else{
-    echo "false";
-}
+$stmt->execute();
+echo $connection->lastInsertId();
 
-?>
+
+
 
 
 
